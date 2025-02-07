@@ -755,4 +755,6 @@ module.exports = msgHandler = async (client, message) => {
         case '!quote':
         case '!quotes':
             const quotes = await get.get('https://mhankbarbar.tech/api/randomquotes').json()
-            client.reply(from, `➸ *Quotes* : ${quotes.q
+            client.reply(from, 
+  `➸ *Quotes* : ${quotes.q}`
+);
