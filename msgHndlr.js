@@ -758,3 +758,32 @@ module.exports = msgHandler = async (client, message) => {
             client.reply(from, 
   `➸ *Quotes* : ${quotes.q}`
 );
+            break
+        case '!quotesnime':
+            const skya = await get.get('https://mhankbarbar.tech/api/quotesnime/random').json()
+            skya_ = skya.data
+            client.reply(from, `➸ *Quotes* : ${skya_.quote}\n➸ *Character* : ${skya_.character}\n➸ *Anime* : ${skya_.anime}`, id)
+            break
+        case '!meme':
+            const response = await axios.get('https://meme-api.herokuapp.com/gimme/wholesomeanimemes');
+            const { postlink, title, subreddit, url, nsfw, spoiler } = response.data
+            client.sendFileFromUrl(from, `${url}`, 'meme.jpg', `${title}`)
+            break
+        case '!help':
+            client.sendText(from, help)
+            break
+        case '!readme':
+            client.reply(from, readme, id)
+            break
+        case '!info':
+            client.sendLinkWithAutoPreview(from, 'https://github.com/mhankbarbar/whatsapp-bot', info)
+            break
+        case '!snk':
+            client.reply(from, snk, id)
+            break
+        }
+    } catch (err) {
+        console.log(color('[ERROR]', 'red'), err)
+        //client.kill().then(a => console.log(a))
+    }
+}
